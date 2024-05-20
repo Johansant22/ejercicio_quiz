@@ -10,31 +10,23 @@
 
 
     <h1>Bienvenido, crea tu perfil de camionero</h1>
-    
-    @foreach ($truck_drivers as $truck_driver)
 
-    <tr>
-        <br>
-        <td>{{$truck_driver->dni}}</td>
-        <td>{{$truck_driver->ciudad}}</td>
-        <td>{{$truck_driver->nombre}}</td>
-        <td>{{$truck_driver->telefono}}</td>
-        <td>{{$truck_driver->direccion}}</td>
-        <td>{{$truck_driver->salario}}</td>
-        <td> <a  href="{{ route('trucks.show', $truck_driver->id)}}">Mostrar</a></td>
-        <td> <a  href="{{ route('trucks.edit', $truck_driver->id)}}">Editar</a></td>
-
-        <td>
-            <form action="{{ route('trucks.destroy',$truck_driver->id)}}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit">Eliminar</button>
-            </form>
-        </td>
-
-    </tr>
-
-    @endforeach
+    <h1>Lista de Camioneros</h1>
+    <a href="{{ route('trucks.create') }}">Crear nuevo camionero</a>
+    <ul>
+        @foreach ($truck_drivers as $truck_driver)
+            <li>
+                {{ $truck_driver->nombre }}
+                <a href="{{ route('trucks.show', $truck_driver) }}">Ver</a>
+                <a href="{{ route('trucks.edit', $truck_driver) }}">Editar</a>
+                <form action="{{ route('trucks.destroy', $truck_driver) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
+        @endforeach
+    </ul>
 
 </body>
 </html>

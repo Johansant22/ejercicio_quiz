@@ -9,6 +9,12 @@ class Truck extends Model
 {
     use HasFactory;
 
-    protected $table = 'truck';
+    protected $table = 'trucks';
     protected  $guarde = [];
+
+    public function truckDrivers()
+    {
+        return $this->belongsToMany(Truck_driver::class, 'conducts');
+    }
+
 }

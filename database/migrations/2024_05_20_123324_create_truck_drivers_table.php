@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('truck_drivers', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->string('ciudad');
             $table->bigInteger('dni');
             $table->string('direccion');
             $table->bigInteger('telefono');
@@ -32,13 +33,27 @@ return new class extends Migration
         });
 
 
-        Schema::create('packeges', function (Blueprint $table) {
+        Schema::create('packages', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('código');
-            $table->string('descripción');
+            $table->integer('codigo');
+            $table->string('descripcion');
             $table->string('destinatario');
-            $table->string('dirección');
+            $table->string('direcciocon lon');
+            $table->timestamps();
+        });
+
+        Schema::create('distributes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('truck_drivers_id')->constrained('truck_drivers');
+            $table->foreignId('package_id')->constrained('packages');
+            $table->timestamps();
+        });
+
+        Schema::create('conducts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('truck_drivers_id')->constrained('truck_drivers');
+            $table->foreignId('trucks_id')->constrained('trucks');
             $table->timestamps();
         });
 
@@ -50,8 +65,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('truck_drivers');
-        Schema::dropIfExists('trucks');
+        Schema::dropIfExists('conducts');
+        Schema::dropIfExists('distributes');
         Schema::dropIfExists('packages');
+        Schema::dropIfExists('trucks');
+        Schema::dropIfExists('truck_drivers');
+
     }
 };

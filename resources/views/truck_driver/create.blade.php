@@ -23,7 +23,7 @@
         <label>
             Ciudad:
             <br>
-            <input type="text" name="poblacion">
+            <input type="text" name="ciudad">
         </label>
         <br>
 

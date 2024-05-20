@@ -9,7 +9,11 @@ class Package extends Model
 {
     use HasFactory;
 
-    protected $table = 'package';
+    protected $table = 'packeges';
     protected  $guarde = [];
 
+    public function truckDrivers()
+    {
+        return $this->belongsTo(Distribute::class);
+    }
 }

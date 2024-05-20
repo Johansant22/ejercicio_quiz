@@ -7,10 +7,13 @@
     <title>Mostrar perfil</title>
 </head>
 <body>
-    <h1>hola desde show</h1>
-
-
-   
-
+    <h1>Detalle del Camionero</h1>
+    <p>DNI: {{ $truck_driver->dni }}</p>
+    <p>Nombre: {{ $truck_driver->nombre }}</p>
+    <p>Ciudad: {{ $truck_driver->ciudad }}</p>
+    <p>Teléfono: {{ $truck_driver->telefono }}</p>
+    <p>Dirección: {{ $truck_driver->direccion }}</p>
+    <p>Salario: {{ $truck_driver->salario }}</p>
+    <a href="{{ route('trucks.index') }}">Volver</a>
 </body>
 </html>
